@@ -395,6 +395,11 @@ public:
 	 */
 	unsigned long maxRequests;
 
+	/** If the current time (in microseconds) has already been queried, set it
+	 * here. Pool will use this timestamp instead of querying it again.
+	 */
+	unsigned long long currentTime;
+
 	/** When true, Pool::get() and Pool::asyncGet() will create the necessary
 	 * SuperGroup and Group structures just as normally, and will even handle
 	 * restarting logic, but will not actually spawn any processes and will not
@@ -457,6 +462,7 @@ public:
 		  stickySessionId(0),
 		  statThrottleRate(0),
 		  maxRequests(0),
+		  currentTime(0),
 		  noop(false)
 		  /*********************************/
 	{
@@ -547,6 +553,7 @@ public:
 		hostName = StaticString();
 		uri      = StaticString();
 		stickySessionId = 0;
+		currentTime     = 0;
 		noop     = false;
 		return detachFromUnionStationTransaction();
 	}
