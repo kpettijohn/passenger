@@ -56,6 +56,6 @@ else
 	end
 
 	task 'native_support:clean' do
-		sh "echo rm -rf #{output_dir}"
+		sh "rm -rf #{output_dir}"
 	end
 end
